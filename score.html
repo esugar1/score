@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICRA Score Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        select {
+            padding: 8px;
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 20px;
+        }
+        input[type="button"] {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="button"]:hover {
+            background-color: #218838;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>ICRA Score Generator</h1>
+
+    <label for="age">Select Patient Age:</label>
+    <select id="age">
+      <option value="0">--</option>
+        <option value="0">Under 1 year</option>
+        <option value="1">1 year</option>
+        <option value="2">2 years</option>
+        <option value="3">3 years</option>
+        <option value="4">4 years</option>
+        <option value="5">5 years</option>
+        <option value="6">6 years</option>
+        <option value="7">7 years</option>
+        <option value="8">8 years</option>
+        <option value="9">9 years</option>
+        <option value="10">10 years</option>
+        <option value="11">11 years</option>
+        <option value="12">12 years</option>
+        <option value="13">13 years</option>
+        <option value="14">14 years</option>
+        <option value="15">15 years</option>
+        <option value="16">16 years</option>
+        <option value="17">17 years</option>
+    </select>
+
+    <label for="sex">Select Patient Sex Assigned at Birth.:</label>
+    <select id="sex">
+      <option value="0">--</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+  </select>
+
+    <label for="race">Select Race/Ethnicity that best describes the patient:</label>
+    <select id="race">
+      <option value="0">--</option>
+        <option value="0">Hispanic</option>
+        <option value="0">Asian</option>
+        <option value="0.237182147">Black</option>
+        <option value="0">Native American/Alaskan Native</option>
+        <option value="1.04098247">Native Hawaiian/Pacific Islander</option>
+        <option value="0">Multiracial</option>
+    </select>
+
+    <label for="insurance">Select Patient's Primary Insurance Provider.:</label>
+    <select id="insurance">
+      <option value="0">--</option>
+      <option value="0">Private Insurance</option>
+        <option value="0.130854563">Medicaid</option>
+        <option value="0">Other/Not Listed</option>
+    </select>
+
+    <label for="region">Select Patient's OPTN Region.:</label>
+    <select id="region">
+      <option value="0">--</option>
+        <option value="0">Region 1</option>
+        <option value="0">Region 2</option>
+        <option value="0">Region 3</option>
+        <option value="0">Region 4</option>
+        <option value="0">Region 5</option>
+        <option value="0">Region 6</option>
+        <option value="0">Region 7</option>
+        <option value="0">Region 8</option>
+        <option value="0">Region 9</option>
+        <option value="0.315433903">Region 10</option>
+        <option value="0">Region 11</option>
+        
+    </select>
+
+    <label for="indication">Select Patient's Transplant Indication/Diagnosis:</label>
+    <select id="indication">
+      <option value="0">--</option>
+        <option value="-0.872283416">Dilated Cardiomyopathy</option>
+        <option value="-0.442205444">Restrictive Heart Disease</option>
+        <option value="-0.491450048">Hypertrophic Obstructive Cardiomyopathy</option>
+        <option value="0.759244798">Valvular Heart Disease</option>
+        <option value="0">Other</option>
+    </select>
+
+    <label for="blood">Select patient's ABO blood type:</label>
+    <select id="blood">
+      <option value="0">--</option>
+        <option value="0">A</option>
+        <option value="-0.190906058">B</option>
+        <option value="0">AB</option>
+        <option value="0">O</option>
+    </select>
+
+    <label for="status">Select patient's current transplant status:</label>
+    <select id="status">
+      <option value="0">--</option>
+        <option value="0">1a</option>
+        <option value="-0.357599657">1b</option>
+        <option value="-0.386661951">2</option>
+        <option value="0">Inactive</option>
+    </select>
+
+    <label for="sca">Does the patient have a history of sudden cardiac arrest?</label>
+    <select id="sca">
+      <option value="0">--</option>
+        <option value="0">No</option>
+        <option value="0.226231578">Yes</option>
+    </select>
+
+    <label for="vent">Is the patient currently on a ventilator?:</label>
+    <select id="vent">
+      <option value="0">--</option>
+      <option value="0">No</option>
+      <option value="0.484316953">Yes</option>
+    </select>
+
+    <label for="ecmo">Is the patient currently on ECMO?:</label>
+    <select id="ecmo">
+      <option value="0">--</option>
+      <option value="0">No</option>
+      <option value="0.858793814">Yes</option>
+    </select>
+
+    <label for="dialysis">Is the patient currently on dialysis?:</label>
+    <select id="dialysis">
+      <option value="0">--</option>
+      <option value="0">No</option>
+      <option value="0.428584451">Yes</option>
+    </select>
+
+    <label for="height">Height/Length (in cm):</label>
+    <input type="text" id="height" placeholder="Enter Height/Length">
+
+    <label for="weight">Weight (in kg):</label>
+    <input type="text" id="weight" placeholder="Enter Weight">
+
+    <label for="albumin">Most Recent Serum Albumin (g/dL):</label>
+    <input type="text" id="albumin" placeholder="Enter Serum Albumin">
+
+    <label for="creatinine">Most Recent Serum Creatinine (mg/dL):</label>
+    <input type="text" id="creatinine" placeholder="Enter Serum Creatinine">
+  </select>
+<br>
+<br>
+
+    <input type="button" value="Calculate Score" onclick="calculateScore()">
+    <div id="result"></div>
+
+
+<script>
+        function calculateScore() {
+            // Get selected values
+const age = parseFloat(document.getElementById('age').value);
+const race = parseFloat(document.getElementById('race').value);
+const insurance = parseFloat(document.getElementById('insurance').value);
+const region = parseFloat(document.getElementById('region').value);
+const indication = parseFloat(document.getElementById('indication').value);
+const blood = parseFloat(document.getElementById('blood').value);
+const status = parseFloat(document.getElementById('status').value);
+const sca = parseFloat(document.getElementById('sca').value);
+const vent = parseFloat(document.getElementById('vent').value);
+const ecmo = parseFloat(document.getElementById('ecmo').value);
+const dialysis = parseFloat(document.getElementById('dialysis').value);
+const height = parseFloat(document.getElementById('height').value);
+const weight = parseFloat(document.getElementById('weight').value);
+const creatinine = parseFloat(document.getElementById('creatinine').value);
+const albumin = parseFloat(document.getElementById('albumin').value);
+const sex = document.getElementById("sex").value;
+
+
+    
+let score=0
+score += (race + insurance + region + indication + blood + status + sca + vent + ecmo + dialysis);
+
+// age adjustment
+let ageAdjustment = 0;
+
+if (age === 0) {ageAdjustment = 0.839149611; // Adjust point value as needed
+} else if (age >= 1 && age < 3) {
+  ageAdjustment = 0.372028965; // Adjust point value as needed
+} else if (age >= 3 && age < 9 ) {
+  ageAdjustment = 0.660567686; // Adjust point value as needed
+} else if (age >= 9 && age <= 17) {
+  ageAdjustment = 0; // Adjust point value as needed
+}
+
+{score += ageAdjustment;}
+
+
+// albumin adjustment
+let albuminAdjustment = 0;
+if (age === 0 && albumin < 2.2) {
+    albuminAdjustment = 0.383720396; // Adjust point value as needed
+} else if (age >= 1 && age <= 15 && albumin < 3.6) {
+    albuminAdjustment = 0.383720396; // Adjust point value as needed
+} else if (age > 15 && albumin < 3.9) {
+    albuminAdjustment = 0.383720396; // Adjust point value as needed
+} 
+
+score += albuminAdjustment;
+
+//creatine adjustment 1
+let creatAdjustment1 = 0;
+
+if (age <= 1 && creatinine > .36 && creatinine <= .86 ) { // Use '===' for comparison
+creatAdjustment1 = 0.415881997; // Adjust point value as needed
+} else if (age >1 && age <= 4 && creatinine > .43 && creatinine <= .93) {
+  creatAdjustment1 = 0.415881997;// Adjust point value as needed
+} else if (age >4 && age <= 11 && creatinine > .61 && creatinine <= 1.11) {
+  creatAdjustment1 = 0.415881997; // Adjust point value as needed
+} else if (age >11 && age <= 14  && creatinine > .81 && creatinine <= 1.31) {
+  creatAdjustment1 = 0.415881997; // No adjustment for this age group
+} else if (age >=15 && creatinine > 1.09 && creatinine <= 1.59 && sex === "Male") {
+  creatAdjustment1 = 0.415881997; // Adjust point value as needed
+} else if (age >=15 && creatinine > .84 && creatinine <= 1.34 && sex === "Female") {
+  creatAdjustment1 = 0.415881997; // Adjust point value as needed
+} 
+
+score += creatAdjustment1;
+
+//creatine adjustment 2
+let creatAdjustment2 = 0;
+
+if (age <= 1 && creatinine > .86 ) { // Use '===' for comparison
+  creatAdjustment2 = 0.647629805; // Adjust point value as needed
+} else if (age >1 && age <= 4 && creatinine > .93) {
+  creatAdjustment2 = 0.647629805;// Adjust point value as needed
+} else if (age >4 && age <= 11 && creatinine > 1.11) {
+  creatAdjustment2 = 0.647629805; // Adjust point value as needed
+} else if (age >11 && age <= 14  && creatinine > 1.31) {
+  creatAdjustment2 = 0.647629805; // No adjustment for this age group
+} else if (age >=15 && creatinine > 1.59 && sex === "Male") {
+  creatAdjustment2 = 0.647629805; // Adjust point value as needed
+} else if (age >=15 && creatinine > 1.34 && sex === "Female") {
+  creatAdjustment2 = 0.647629805; // Adjust point value as needed
+} 
+
+score += creatAdjustment2;
+
+// height adjustment
+let heightAdjustment1 = 0;
+if ( age ===0 && sex ==="Male" && height > 64.063459 && height <= 71.905628 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===1 && sex ==="Male" && height > 83.50328 && height <= 89.58668 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===2 && sex ==="Male" && height > 94.332761 && height <= 101.007882 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===3 && sex ==="Male" && height > 100.637191 && height <= 106.831562 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===4 && sex ==="Male" && height > 107.173207 && height <= 113.654714 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===5 && sex ==="Male" && height > 113.175367 && height <= 120.564934 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===6 && sex ==="Male" && height > 123.687923 && height <= 133.079446 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===7 && sex ==="Male" && height > 128.941818 && height <= 138.068036 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===8 && sex ==="Male" && height > 135.16865 && height <= 145.5601 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===9 && sex ==="Male" && height > 142.04824 && height <= 152.61438 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===10 && sex ==="Male" && height > 147.00977 && height <= 158.34504 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===11 && sex ==="Male" && height > 156.99224 && height <= 169.23128 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===12 && sex ==="Male" && height > 160.0669 && height <= 172.2745 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===13 && sex ==="Male" && height > 168.53026 && height <= 180.91072 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===14 && sex ==="Male" && height > 176.37743 && height <= 188.61426 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===15 && sex ==="Male" && height > 179.43171 && height <= 191.66162 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===16 && sex ==="Male" && height > 183.14751 && height <= 195.59822 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===17 && sex ==="Male" && height > 182.1517 && height <= 192.2601 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===0 && sex ==="Female" && height > 64.031879 && height <= 71.984198 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===1 && sex ==="Female" && height > 82.948681 && height <= 89.570292 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===2 && sex ==="Female" && height > 92.736439 && height <= 100.477898 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===3 && sex ==="Female" && height > 100.251113 && height <= 107.122556 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===4 && sex ==="Female" && height > 109.141729 && height <= 117.636558 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===5 && sex ==="Female" && height > 115.275359 && height <= 123.283718 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===6 && sex ==="Female" && height > 120.381944 && height <= 128.019688 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===7 && sex ==="Female" && height > 130.695769 && height <= 140.339038 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===8 && sex ==="Female" && height > 135.408821 && height <= 144.731242 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===9 && sex ==="Female" && height > 143.71333 && height <= 155.41046 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===10 && sex ==="Female" && height > 150.31937 && height <= 160.88924 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===11 && sex ==="Female" && height > 158.13472 && height <= 169.74444 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===12 && sex ==="Female" && height > 160.50271 && height <= 172.06062 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===13 && sex ==="Female" && height > 165.92422 && height <= 176.41974 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===14 && sex ==="Female" && height > 168.99275 && height <= 179.3992 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===15 && sex ==="Female" && height > 167.479694 && height <= 177.279588 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===16 && sex ==="Female" && height > 169.147785 && height <= 178.13917 ) {heightAdjustment1 = -0.454894036243868;}
+else if ( age ===17 && sex ==="Female" && height > 168.520805 && height <= 177.27681 ) {heightAdjustment1 = -0.454894036243868;}
+
+score += heightAdjustment1;
+
+// height adjustment 2
+
+let heightAdjustment2 = 0;
+if ( age === 1 && sex ==="Male" && height < 65.25308 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 2 && sex ==="Male" && height < 74.307398 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 3 && sex ==="Male" && height < 82.054078 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 4 && sex ==="Male" && height < 87.728686 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 5 && sex ==="Male" && height < 91.006666 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 6 && sex ==="Male" && height < 95.513354 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 7 && sex ==="Male" && height < 101.563164 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 8 && sex ==="Male" && height < 103.9943 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 9 && sex ==="Male" && height < 110.34982 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 10 && sex ==="Male" && height < 113.00396 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 11 && sex ==="Male" && height < 120.27512 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 12 && sex ==="Male" && height < 123.4441 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 13 && sex ==="Male" && height < 131.38888 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 14 && sex ==="Male" && height < 139.66694 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 15 && sex ==="Male" && height < 142.74198 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 16 && sex ==="Male" && height < 145.79538 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 17 && sex ==="Male" && height < 151.8265 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 0 && sex ==="Female" && height < 40.174922 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 1 && sex ==="Female" && height < 63.083848 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 2 && sex ==="Female" && height < 69.512062 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 3 && sex ==="Female" && height < 79.636784 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 4 && sex ==="Female" && height < 83.657242 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 5 && sex ==="Female" && height < 91.250282 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 6 && sex ==="Female" && height < 97.468712 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 7 && sex ==="Female" && height < 101.765962 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 8 && sex ==="Female" && height < 107.441558 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 9 && sex ==="Female" && height < 108.62194 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 10 && sex ==="Female" && height < 118.60976 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 11 && sex ==="Female" && height < 123.30556 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 12 && sex ==="Female" && height < 125.82898 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 13 && sex ==="Female" && height < 134.43766 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 14 && sex ==="Female" && height < 137.7734 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 15 && sex ==="Female" && height < 138.080012 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 16 && sex ==="Female" && height < 142.17363 ) {heightAdjustment1 = 0.384594831076783;}
+else if ( age === 17 && sex ==="Female" && height < 142.25279 ) {heightAdjustment1 = 0.384594831076783;}
+
+score += heightAdjustment2
+
+// weight adjustment
+
+let weightAdjustment = 0; 
+if ( age === 1 && sex ==="Male" && weight >12.725153 ) {weightAdjustment = 0.609224121;}
+else if ( age === 2 && sex ==="Male" && weight >16.057614 ) {weightAdjustment = 0.609224121;}
+else if ( age === 3 && sex ==="Male" && weight >18.354624 ) {weightAdjustment = 0.609224121;}
+else if ( age === 4 && sex ==="Male" && weight >20.952926 ) {weightAdjustment = 0.609224121;}
+else if ( age === 5 && sex ==="Male" && weight >23.439984 ) {weightAdjustment = 0.609224121;}
+else if ( age === 6 && sex ==="Male" && weight >28.676156 ) {weightAdjustment = 0.609224121;}
+else if ( age === 7 && sex ==="Male" && weight >34.20389 ) {weightAdjustment = 0.609224121;}
+else if ( age === 8 && sex ==="Male" && weight >42.096542 ) {weightAdjustment = 0.609224121;}
+else if ( age === 9 && sex ==="Male" && weight >54.96724 ) {weightAdjustment = 0.609224121;}
+else if ( age === 10 && sex ==="Male" && weight >62.53976 ) {weightAdjustment = 0.609224121;}
+else if ( age === 11 && sex ==="Male" && weight >78.00658 ) {weightAdjustment = 0.609224121;}
+else if ( age === 12 && sex ==="Male" && weight >76.53924 ) {weightAdjustment = 0.609224121;}
+else if ( age === 13 && sex ==="Male" && weight >89.0221 ) {weightAdjustment = 0.609224121;}
+else if ( age === 14 && sex ==="Male" && weight >98.3296 ) {weightAdjustment = 0.609224121;}
+else if ( age === 15 && sex ==="Male" && weight >105.55397 ) {weightAdjustment = 0.609224121;}
+else if ( age === 16 && sex ==="Male" && weight >115.20724 ) {weightAdjustment = 0.609224121;}
+else if ( age === 17 && sex ==="Male" && weight >117.38135 ) {weightAdjustment = 0.609224121;}
+else if ( age === 0 && sex ==="Female" && weight >8.074421 ) {weightAdjustment = 0.609224121;}
+else if ( age === 1 && sex ==="Female" && weight >12.437909 ) {weightAdjustment = 0.609224121;}
+else if ( age === 2 && sex ==="Female" && weight >23.19463 ) {weightAdjustment = 0.609224121;}
+else if ( age === 3 && sex ==="Female" && weight >21.43981 ) {weightAdjustment = 0.609224121;}
+else if ( age === 4 && sex ==="Female" && weight >22.684526 ) {weightAdjustment = 0.609224121;}
+else if ( age === 5 && sex ==="Female" && weight >25.291878 ) {weightAdjustment = 0.609224121;}
+else if ( age === 6 && sex ==="Female" && weight >26.286968 ) {weightAdjustment = 0.609224121;}
+else if ( age === 7 && sex ==="Female" && weight >36.84129 ) {weightAdjustment = 0.609224121;}
+else if ( age === 8 && sex ==="Female" && weight >50.47461 ) {weightAdjustment = 0.609224121;}
+else if ( age === 9 && sex ==="Female" && weight >58.04992 ) {weightAdjustment = 0.609224121;}
+else if ( age === 10 && sex ==="Female" && weight >64.09392 ) {weightAdjustment = 0.609224121;}
+else if ( age === 11 && sex ==="Female" && weight >75.28482 ) {weightAdjustment = 0.609224121;}
+else if ( age === 12 && sex ==="Female" && weight >76.94855 ) {weightAdjustment = 0.609224121;}
+else if ( age === 13 && sex ==="Female" && weight >85.16321 ) {weightAdjustment = 0.609224121;}
+else if ( age === 14 && sex ==="Female" && weight >90.56769 ) {weightAdjustment = 0.609224121;}
+else if ( age === 15 && sex ==="Female" && weight >84.48635 ) {weightAdjustment = 0.609224121;}
+else if ( age === 16 && sex ==="Female" && weight >98.08659 ) {weightAdjustment = 0.609224121;}
+else if ( age === 17 && sex ==="Female" && weight >97.56797 ) {weightAdjustment = 0.609224121;}
+
+score += weightAdjustment
+
+// construct final core
+
+const finalScore = 20 * (score - (-1.7448)) / (4.6992 - (-1.7448))
+
+    let riskLabel;
+    if (finalScore <= 5.93) {
+        riskLabel = 'Low risk';
+    } else if (finalScore > 5.93 && finalScore <= 8.81) {
+        riskLabel = 'Low-moderate risk';
+    } else if (finalScore > 8.810211 && finalScore <= 12.11608) {
+        riskLabel = 'Moderate risk';
+    } else if (finalScore > 12.11608 && finalScore <= 14.65937) {
+        riskLabel = 'High risk';
+    } else if (finalScore > 14.65937) {
+        riskLabel = 'Futile';
+    }
+            // Display the result
+            document.getElementById('result').innerText = `Your Score: ${finalScore.toFixed(1)} (${riskLabel})`;
+          }
+    </script>
+</body>
+</html>
+
+        
