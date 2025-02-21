@@ -412,7 +412,7 @@ const finalScore = 20 * (score - (-1.7448)) / (4.6992 - (-1.7448))
     } else if (finalScore > 12.11608 && finalScore <= 14.65937) {
         riskLabel = 'High risk';
     } else if (finalScore > 14.65937) {
-        riskLabel = 'Futile';
+        riskLabel = 'Futile: 17.1% (95% CI: 10.8%-24.7%) ITT Survival at 1 year';
     }
             // Display the result
             document.getElementById('result').innerText = `Your Score: ${finalScore.toFixed(1)} (${riskLabel})`;
